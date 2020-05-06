@@ -5,12 +5,12 @@ const server = express()
 server.use(express.json())
 
 // Blog Post Structure
-let blogs = {
+let posts = [{
   title: "The post title", // String, required
   contents: "The post contents", // String, required
   created_at: Date(), // Mon Aug 14 2017 12:50:16 GMT-0700 (PDT) // Date, defaults to current date
   updated_at: Date() // Mon Aug 14 2017 12:50:16 GMT-0700 (PDT) // Date, defaults to current date
-}
+}]
 
 let comments = {
   text: "The text of the comment", // String, required
@@ -22,13 +22,14 @@ let comments = {
 
 
 server.post("/api/posts", (req, res)=>{
- let body = req.body
-  if (!body.title || !body.contents)
+ let newPost = req.body
+  if (!newPost.title || !newPost.contents)
  {
   res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
  }
  else{
-  res.json(blogs)
+   posts.push(newPost)
+  res.status(201).json(posts)
  }
 })  // POST
 
@@ -37,7 +38,7 @@ server.post("/api/posts/:id/comments",(req, res)=>{
 }) // POST
 
 server.get("/api/posts", (req, res)=>{
-res.json(blogs)
+res.json(posts)
 }) // GET
 
 server.get("/api/posts/:id", (req, res)=>{
