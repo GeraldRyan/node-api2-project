@@ -21,7 +21,7 @@ let comments = {
 
 
 
-sever.post("/api/posts", (req, res)=>{
+server.post("/api/posts", (req, res)=>{
 
 })  // POST
 
@@ -30,7 +30,7 @@ server.post("/api/posts/:id/comments",(req, res)=>{
 }) // POST
 
 server.get("/api/posts", (req, res)=>{
-
+res.json(blogs)
 }) // GET
 
 server.get("/api/posts/:id", (req, res)=>{
@@ -48,3 +48,5 @@ server.delete("/api/posts/:id", (req, res)=>{
 server.put("/api/posts/:id", (req, res)=>{
 
 }) // PUT
+
+server.listen(5000)
