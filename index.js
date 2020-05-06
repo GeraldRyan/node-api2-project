@@ -22,7 +22,14 @@ let comments = {
 
 
 server.post("/api/posts", (req, res)=>{
-
+ let body = req.body
+  if (!body.title || !body.contents)
+ {
+  res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
+ }
+ else{
+  res.json(blogs)
+ }
 })  // POST
 
 server.post("/api/posts/:id/comments",(req, res)=>{
