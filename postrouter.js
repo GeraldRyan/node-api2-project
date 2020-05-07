@@ -105,19 +105,30 @@ router.get("/:id", (req, res) =>
   // .catch(res.status(400).json("Not found"))
 })
 
-router.get("/api/posts/:id/comments", (req, res) =>
+router.get("/:id/comments", (req, res) =>
 {
+  
 
-}) // GET
+  db.findCommentById(req.params.id).then(Barnabas=>{
+    res.status(201).json(Barnabas)
+  })
+})
 
-router.delete("/api/posts/:id", (req, res) =>
+router.delete("/:id", (req, res) =>
 {
+  db.remove(req.params.id).then(stuff=>{
+    res.status(201).json(stuff)
+  })
 
 }) // DELETE
 
-router.put("/api/posts/:id", (req, res) =>
+router.put("/:id", (req, res) =>
 {
+  // res.status(201).json(req.body)
 
+  db.update(req.params.id, req.body).then(stuff =>{
+    res.status(201).json(stuff)
+  })
 }) // PUT
 
 
