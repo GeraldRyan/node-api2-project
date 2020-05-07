@@ -88,18 +88,22 @@ router.post("/:id/comments", (req, res) =>
 
 router.get("/", (req, res) =>
 {
-
   db.find().then(posts =>
   {
     res.status(201).json(posts)
   })
 
-}) // GET
+}) 
 
-router.get("/api/posts/:id", (req, res) =>
+router.get("/:id", (req, res) =>
 {
+  let id = req.params.id
 
-}) // GET
+  db.findById(id).then(Barnabas=>{
+    res.status(201).json(Barnabas) // WHEN CATCH IS ACTIVE, IT DEFAULTS TO CATCH, OTHERWISE IT WORKS!! 
+  })
+  // .catch(res.status(400).json("Not found"))
+})
 
 router.get("/api/posts/:id/comments", (req, res) =>
 {
