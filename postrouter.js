@@ -59,14 +59,27 @@ router.post("/:id/comments", (req, res) =>
       console.log(id)
       res.status(404).json({ message: "The post with the specified ID does not exist." })
     }
+    else if (!req.body.text)
+    {
+      res.status(400).json({ errorMessage: "Please provide text for the comment." })
+    }
+    else if (req.body.text)
+    {
+      let comment = {comment: req.body.text, post_id: id}
+      
+      db.insertComment(comment).then(helenOfTroy =>
+      {
+        
+        res.status(201).json({helenOfTroy})
+
+      }).catch(error=>{res.status(201).json("Caught up")}
+      )}
     else
     {
-      res.status(200).json({ thePost: thePost})
+      res.status(500).json({ error: "There was an error while saving the comment to the database" })
     }
   }
   )
-
-
 
 })
 
