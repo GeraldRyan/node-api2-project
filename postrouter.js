@@ -65,7 +65,7 @@ router.post("/:id/comments", (req, res) =>
     }
     else if (req.body.text)
     {
-      let comment = {comment: req.body.text, post_id: id}
+      let comment = {text: req.body.text, post_id: id}
       
       db.insertComment(comment).then(helenOfTroy =>
       {
