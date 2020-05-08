@@ -122,10 +122,9 @@ router.delete("/:id", (req, res) =>
 
 }) // DELETE
 
-router.put("/:id", (req, res) =>
+router.put("/:id", (req, res) => /// Didn't get this working. Don't understand the comment object
 {
   // res.status(201).json(req.body)
-
   db.update(req.params.id, req.body).then(stuff =>{
     res.status(201).json(stuff)
   })
